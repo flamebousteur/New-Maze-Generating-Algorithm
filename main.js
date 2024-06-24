@@ -7,7 +7,6 @@ Last Updated 1/12/2024
 let mazeWidth = 10;
 let mazeHeight = 10;
 let algorithmIterations = mazeWidth * mazeHeight * 10; // how many iterations should be performed when running the algorithm
-let animationFPS = 24; // frames per second
 let drawArrow = false; // whether to show the direction of each node or not. Toggle with "a" key
 let highlightOrigin = true; // wether to highlight the origin node or not. Toggle with "o" key
 let hideText = false; // Toggle with "h" keyg
@@ -92,7 +91,7 @@ view.drawMaze(maze, drawArrow, highlightOrigin, hideText);
 function mainLoop() {
     maze.iterate();
     view.drawMaze(maze, drawArrow, highlightOrigin, hideText);
-    if (animate) setTimeout(mainLoop, 1000 / animationFPS);
+    if (animate) requestAnimationFrame(mainLoop);
 }
 
 // event listeners
@@ -112,7 +111,7 @@ document.addEventListener("keydown", function(event) {
         case " ":
             // toggle animation
             animate = !animate;
-            setTimeout(mainLoop, 1000 / animationFPS);
+            requestAnimationFrame(mainLoop);
             break;
         case "a":
             // toggle arrows
